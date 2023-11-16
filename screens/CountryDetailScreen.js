@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { useQuery, gql } from "@apollo/client";
 
 const GET_DATA = gql`
@@ -8,9 +8,6 @@ const GET_DATA = gql`
       name
       capital
       currency
-      languages {
-        name
-      }
       phone
       emoji
     }
@@ -30,14 +27,30 @@ const CountryDetailScreen = ({ route }) => {
   if (error) return <Text>Error: {error.message}</Text>;
 
   return (
-    <View>
-      <Text>{country.emoji} </Text>
-      <Text>{country.name} </Text>
-      <Text>{country.capital} </Text>
-      <Text>{country.currency} </Text>
-      <Text>{country.phone} </Text>
+    <View style={styles.container}>
+      <Text style={styles.emoji}>{country.emoji} </Text>
+      <Text style={styles.text}>{country.name} </Text>
+      <Text style={styles.text}>{country.capital} </Text>
+      <Text style={styles.text}>{country.currency} </Text>
+      <Text style={styles.text}>{country.phone} </Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  emoji: {
+    fontSize: 64,
+    marginBottom: 20,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+});
 
 export default CountryDetailScreen;

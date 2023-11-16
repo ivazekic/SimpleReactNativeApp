@@ -11,7 +11,11 @@ const BottomNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarStyle: { backgroundColor: "white", height: 70 },
+        tabBarStyle: {
+          backgroundColor: "white",
+          height: 70,
+          paddingBottom: 15,
+        },
         tabBarIcon: ({ color, size }) => (
           <Icon
             name={route.name === "Countries" ? "public" : "person"}
